@@ -1,0 +1,7 @@
+date,location,water_body_type,sample_volume,particle_count,particle_type,suspected_source,sampling_depth,drinking_water_intake_nearby,notes
+2024-09-01,Cauvery River - Upper Grand Anicut Reach,River,50.0,175,Fibres,Synthetic textile fibres,Surface (0-0.5m),TRUE,Upstream of irrigation split; domestic laundry drainage
+2024-09-05,Kalingarayan Canal Outfall,River,40.0,290,Fragments,Tyre and road wear,Surface (0-0.5m),FALSE,Highway stormwater inflow; rubber and mineral matrix
+2024-09-12,Stanley Reservoir - Western Basin,Reservoir,80.0,110,Fragments,Plastic litter & packaging,Mid-depth (2-5m),TRUE,Municipal intake zone; degraded bottle caps and film scraps
+2024-09-18,Uyyakondan Canal - Tiruchirappalli,River,35.0,240,Films,Agricultural runoff,Surface (0-0.5m),FALSE,Irrigation tail-end channel; agricultural mulching film bits
+2024-09-25,Pichavaram Mangrove Tidal Channel,Estuary,60.0,95,Beads/Pellets,Personal-care products & microbeads,Sediment / Benthic,FALSE,Benthic estuarine mud; spherical micro-beads
+2024-10-02,Bhavanisagar Reservoir - Intake Point,Reservoir,75.0,68,Fibres,Synthetic textile fibres,Surface (0-0.5m),TRUE,Protected drinking water reservoir intake; low density baseline
