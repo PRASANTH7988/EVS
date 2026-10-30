@@ -54,23 +54,13 @@ jobs:
       - name: Build Debug APK with Gradle
         run: |
           cd android
-          ./gradlew assembleDebug --stacktrace 2>&1 | tee build.log
+          ./gradlew assembleDebug --stacktrace
 
-      - name: Push Error Log on Failure
-        if: failure()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -B build-error-log
-          tail -n 150 android/build.log > GRADLE_ERROR.txt
-          git add GRADLE_ERROR.txt
-          git commit -m "chore: record gradle build error"
-          git push origin build-error-log --force
-
-      - name: Copy & Rename APK
+      - name: Locate and Copy APK
         run: |
           mkdir -p release-apk
-          cp android/app/build/outputs/apk/debug/app-debug.apk release-apk/Microplastics-Monitor.apk
+          find android -name "*.apk" -exec cp -v {} release-apk/Microplastics-Monitor.apk \;
+          ls -lh release-apk/
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
