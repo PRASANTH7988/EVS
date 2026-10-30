@@ -7,6 +7,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build & Package Android APK
@@ -28,9 +31,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Node Dependencies
         run: npm install
 
@@ -48,9 +48,29 @@ jobs:
           cd android
           ./gradlew assembleDebug --stacktrace
 
+      - name: Copy & Rename APK
+        run: |
+          mkdir -p release-apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk release-apk/Microplastics-Monitor.apk
+
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Microplastics-Monitor-v1.0.apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: Microplastics-Monitor.apk
+          path: release-apk/Microplastics-Monitor.apk
           retention-days: 30
+
+      - name: Create GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main'
+        with:
+          tag_name: v1.0.0-apk
+          name: "Microplastics Monitor Mobile APK v1.0.0"
+          body: |
+            ### Microplastics Monitor Android Mobile App (APK)
+            Environmental Science & Engineering Capstone Platform
+            - **Package**: `org.evs.microplastics`
+            - **Direct Download**: Download `Microplastics-Monitor.apk` below and install directly onto your Android device!
+          files: release-apk/Microplastics-Monitor.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
