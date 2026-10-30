@@ -14,6 +14,7 @@ import EcologicalRiskPage from "./pages/EcologicalRiskPage";
 import SamplingRecordsPage from "./pages/SamplingRecordsPage";
 import SolutionsPage from "./pages/SolutionsPage";
 import AboutPage from "./pages/AboutPage";
+import HardwareSimulatorPage from "./pages/HardwareSimulatorPage";
 
 import {
   fetchAllSamples,
@@ -276,6 +277,13 @@ export default function App() {
               onDeleteSample={handleDeleteSample}
               onOpenUploadModal={() => setIsUploadModalOpen(true)}
               onResetDefaultData={handleResetDefaultData}
+            />
+          )}
+
+          {activeTab === "hardware-simulator" && (
+            <HardwareSimulatorPage
+              onSampleAdded={handleSaveSample}
+              backendConnected={backendConnected}
             />
           )}
 

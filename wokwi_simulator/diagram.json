@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "author": "EVS Capstone Research Team",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ssd1306",
+      "id": "oled",
+      "top": -170,
+      "left": -230,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "depth_sensor",
+      "top": -170,
+      "left": 130,
+      "attrs": { "distance": "35" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_green",
+      "top": -140,
+      "left": -50,
+      "attrs": { "color": "green", "label": "Low Risk (<2.0)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_yellow",
+      "top": -140,
+      "left": 0,
+      "attrs": { "color": "yellow", "label": "Mod Risk (2-5)" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_red",
+      "top": -140,
+      "left": 50,
+      "attrs": { "color": "red", "label": "High Risk (>5.0)" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_green",
+      "top": -70,
+      "left": -50,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_yellow",
+      "top": -70,
+      "left": 0,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_red",
+      "top": -70,
+      "left": 50,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_particles",
+      "top": 210,
+      "left": -220,
+      "attrs": { "label": "Nephelometer (Particle Count)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_volume",
+      "top": 210,
+      "left": -70,
+      "attrs": { "label": "Flow Chamber (Sample Volume L)" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 80,
+      "left": 210,
+      "attrs": { "hasVolume": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_sample",
+      "top": 220,
+      "left": 90,
+      "attrs": { "color": "green", "label": "Sample / Telemetry" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_mode",
+      "top": 220,
+      "left": 200,
+      "attrs": { "color": "blue", "label": "Display Mode" }
+    }
+  ],
+  "connections": [
+    [ "oled:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:SCL", "esp:D22", "cyan", [ "v0" ] ],
+    [ "oled:SDA", "esp:D21", "blue", [ "v0" ] ],
+
+    [ "pot_particles:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pot_particles:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot_particles:SIG", "esp:D34", "green", [ "v0" ] ],
+
+    [ "pot_volume:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pot_volume:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot_volume:SIG", "esp:D35", "purple", [ "v0" ] ],
+
+    [ "depth_sensor:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "depth_sensor:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "depth_sensor:TRIG", "esp:D5", "orange", [ "v0" ] ],
+    [ "depth_sensor:ECHO", "esp:D18", "yellow", [ "v0" ] ],
+
+    [ "esp:D19", "r_green:1", "green", [ "v0" ] ],
+    [ "r_green:2", "led_green:A", "green", [ "v0" ] ],
+    [ "led_green:C", "esp:GND.2", "black", [ "v0" ] ],
+
+    [ "esp:D4", "r_yellow:1", "gold", [ "v0" ] ],
+    [ "r_yellow:2", "led_yellow:A", "gold", [ "v0" ] ],
+    [ "led_yellow:C", "esp:GND.2", "black", [ "v0" ] ],
+
+    [ "esp:D2", "r_red:1", "red", [ "v0" ] ],
+    [ "r_red:2", "led_red:A", "red", [ "v0" ] ],
+    [ "led_red:C", "esp:GND.2", "black", [ "v0" ] ],
+
+    [ "esp:D15", "buzzer:1", "red", [ "v0" ] ],
+    [ "buzzer:2", "esp:GND.2", "black", [ "v0" ] ],
+
+    [ "esp:D13", "btn_sample:1.l", "green", [ "v0" ] ],
+    [ "btn_sample:2.l", "esp:GND.1", "black", [ "v0" ] ],
+
+    [ "esp:D12", "btn_mode:1.l", "blue", [ "v0" ] ],
+    [ "btn_mode:2.l", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

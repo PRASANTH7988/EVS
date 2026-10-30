@@ -11,7 +11,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Fish,
-  Microscope
+  Microscope,
+  Cpu
 } from "lucide-react";
 
 export const NAV_ITEMS = [
@@ -21,6 +22,7 @@ export const NAV_ITEMS = [
   { id: "pathways", label: "Contamination Pathways", icon: GitMerge, desc: "Release to Trophic Uptake" },
   { id: "risk-assessment", label: "Ecological Risk", icon: ShieldAlert, desc: "Aquatic Exposure & PNEC" },
   { id: "sampling-records", label: "Sampling Records", icon: Database, desc: "Data Manager & Upload" },
+  { id: "hardware-simulator", label: "Hardware & IoT Node", icon: Cpu, desc: "Wokwi ESP32 Field Simulator" },
   { id: "solutions", label: "Solutions & Recommendations", icon: Lightbulb, desc: "Mitigation & Interventions" },
   { id: "about", label: "About the Project", icon: Info, desc: "Objectives & Team Roster" }
 ];

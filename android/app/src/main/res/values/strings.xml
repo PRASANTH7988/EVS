@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Microplastics Monitor</string>
+    <string name="title_activity_main">Microplastics Monitor</string>
+    <string name="package_name">org.evs.microplastics</string>
+    <string name="custom_url_scheme">org.evs.microplastics</string>
+</resources>
