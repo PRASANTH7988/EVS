@@ -54,7 +54,17 @@ jobs:
       - name: Build Debug APK with Gradle
         run: |
           cd android
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --stacktrace > build.log 2>&1 || (tail -n 120 build.log > ../GRADLE_ERROR.txt && exit 1)
+
+      - name: Save Diagnostic Log
+        if: failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B debug-error
+          git add GRADLE_ERROR.txt
+          git commit -m "ci: upload gradle error trace"
+          git push origin debug-error --force
 
       - name: Locate and Copy APK
         run: |
